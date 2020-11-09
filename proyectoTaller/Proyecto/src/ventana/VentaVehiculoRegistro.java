@@ -2,13 +2,25 @@ package ventana;
 
 import javax.swing.JFrame;
 import java.awt.Color;
+import java.awt.EventQueue;
+
 import javax.swing.JPanel;
 import javax.swing.border.LineBorder;
+
+import dao.ClienteDAO;
+import dao.VehiculoDAO;
+import modelos.Cliente;
+import modelos.Vehiculo;
+
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 import javax.swing.SwingConstants;
 import javax.swing.JButton;
 import javax.swing.JTextField;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class VentaVehiculoRegistro extends JFrame {
 	
@@ -17,6 +29,7 @@ public class VentaVehiculoRegistro extends JFrame {
 	private JTextField txtModelo;
 	private JTextField txtColor;
 	private JTextField txtFechaAlta;
+	private JTextField txtTipo;
 	
 	public VentaVehiculoRegistro() {
 		getContentPane().setBackground(new Color(255, 153, 102));
@@ -74,7 +87,35 @@ public class VentaVehiculoRegistro extends JFrame {
 		panel_2.setBounds(278, 179, 288, 243);
 		getContentPane().add(panel_2);
 		
-		JButton btnRegistrarCliente = new JButton("Registrar cliente");
+		JButton btnRegistrarCliente = new JButton("Registrar vehiculo");
+		
+		btnRegistrarCliente.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+					
+					VehiculoDAO miVehiculoDAO = new VehiculoDAO();
+					Vehiculo miVehiculo = new Vehiculo();
+					
+					miVehiculo.setTipoVehiculo(txtTipo.getText());
+					miVehiculo.setMatricula(txtMatricula.getText());
+					miVehiculo.setMarca(txtMarca.getText());
+					miVehiculo.setModelo(txtModelo.getText());
+					miVehiculo.setColor(txtColor.getText());
+					//miVehiculo.setFechaAlta());
+
+
+										
+					if (miVehiculoDAO.anadirVehiculo(miVehiculo)) 
+					{
+						JOptionPane.showMessageDialog(null, "Registrado correctamente");
+						
+					}else {
+						JOptionPane.showMessageDialog(null, "Registrado INcorrectamente");
+
+					}
+				}
+			
+		});
+
 		btnRegistrarCliente.setForeground(Color.WHITE);
 		btnRegistrarCliente.setFont(new Font("Arial", Font.BOLD, 18));
 		btnRegistrarCliente.setBackground(new Color(0, 128, 128));
@@ -83,58 +124,68 @@ public class VentaVehiculoRegistro extends JFrame {
 		
 		JLabel lblMatricula = new JLabel("Matr\u00EDcula");
 		lblMatricula.setFont(new Font("Arial", Font.BOLD, 14));
-		lblMatricula.setBounds(10, 11, 95, 25);
+		lblMatricula.setBounds(20, 4, 95, 25);
 		panel_2.add(lblMatricula);
 		
 		JLabel lblMarca = new JLabel("Marca");
 		lblMarca.setFont(new Font("Arial", Font.BOLD, 14));
-		lblMarca.setBounds(10, 47, 95, 25);
+		lblMarca.setBounds(20, 33, 95, 25);
 		panel_2.add(lblMarca);
 		
 		JLabel lblModelo = new JLabel("Modelo");
 		lblModelo.setFont(new Font("Arial", Font.BOLD, 14));
-		lblModelo.setBounds(10, 83, 95, 25);
+		lblModelo.setBounds(20, 60, 95, 25);
 		panel_2.add(lblModelo);
 		
 		JLabel lblColor = new JLabel("Color");
 		lblColor.setFont(new Font("Arial", Font.BOLD, 14));
-		lblColor.setBounds(10, 119, 95, 25);
+		lblColor.setBounds(20, 91, 95, 25);
 		panel_2.add(lblColor);
 		
 		JLabel lblFechaAlta = new JLabel("Fecha de alta");
 		lblFechaAlta.setFont(new Font("Arial", Font.BOLD, 14));
-		lblFechaAlta.setBounds(10, 155, 95, 25);
+		lblFechaAlta.setBounds(20, 119, 95, 25);
 		panel_2.add(lblFechaAlta);
 		
 		txtMatricula = new JTextField();
 		txtMatricula.setFont(new Font("Arial", Font.PLAIN, 12));
 		txtMatricula.setColumns(10);
-		txtMatricula.setBounds(158, 16, 110, 20);
+		txtMatricula.setBounds(158, 7, 110, 20);
 		panel_2.add(txtMatricula);
 		
 		txtMarca = new JTextField();
 		txtMarca.setFont(new Font("Arial", Font.PLAIN, 12));
 		txtMarca.setColumns(10);
-		txtMarca.setBounds(158, 50, 110, 20);
+		txtMarca.setBounds(158, 36, 110, 20);
 		panel_2.add(txtMarca);
 		
 		txtModelo = new JTextField();
 		txtModelo.setFont(new Font("Arial", Font.PLAIN, 12));
 		txtModelo.setColumns(10);
-		txtModelo.setBounds(158, 86, 110, 20);
+		txtModelo.setBounds(158, 63, 110, 20);
 		panel_2.add(txtModelo);
 		
 		txtColor = new JTextField();
 		txtColor.setFont(new Font("Arial", Font.PLAIN, 12));
 		txtColor.setColumns(10);
-		txtColor.setBounds(158, 122, 110, 20);
+		txtColor.setBounds(158, 94, 110, 20);
 		panel_2.add(txtColor);
 		
 		txtFechaAlta = new JTextField();
 		txtFechaAlta.setFont(new Font("Arial", Font.PLAIN, 12));
 		txtFechaAlta.setColumns(10);
-		txtFechaAlta.setBounds(158, 158, 110, 20);
+		txtFechaAlta.setBounds(158, 122, 110, 20);
 		panel_2.add(txtFechaAlta);
+		
+		txtTipo = new JTextField();
+		txtTipo.setBounds(158, 155, 110, 20);
+		panel_2.add(txtTipo);
+		txtTipo.setColumns(10);
+		
+		JLabel lblTipo = new JLabel("Tipo");
+		lblTipo.setFont(new Font("Arial", Font.BOLD, 14));
+		lblTipo.setBounds(20, 152, 95, 25);
+		panel_2.add(lblTipo);
 		
 		JPanel panel_3 = new JPanel();
 		panel_3.setBorder(new LineBorder(new Color(0, 0, 0)));
@@ -143,5 +194,18 @@ public class VentaVehiculoRegistro extends JFrame {
 		getContentPane().add(panel_3);
 		setTitle("Benavente & Porras - Venta - Vehiculo - Registro");
 	}
-
+	
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					VentaVehiculoRegistro frame = new VentaVehiculoRegistro();
+					frame.setVisible(true);
+				}
+				catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
 }

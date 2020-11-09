@@ -4,6 +4,7 @@ import java.sql.Date;
 
 public class Vehiculo {
 	
+	//private int idVehiculo;
 	private int idCliente;
 	private int idUsuario;
 	private int idConcesionario;
@@ -12,12 +13,14 @@ public class Vehiculo {
 	private String marca;
 	private String modelo;
 	private String color;
-	private Date fechaAlta;
+	private String fechaAlta;
+	private String tipoVehiculo;
 
-	public Vehiculo(int miIdCliente, int miIdUsuario, int miIdConcesionario, float miPrecio, String miMatricula, String miMarca, String miModelo, String miColor, Date miFechaAlta) {
+	public Vehiculo(int miIdCliente, int miIdUsuario, int miIdConcesionario,String miTipoVehiculo, float miPrecio, String miMatricula, String miMarca, String miModelo, String miColor, String miFechaAlta) {
 		idCliente = miIdCliente;
 		idUsuario = miIdUsuario;
 		idConcesionario = miIdConcesionario;
+		tipoVehiculo = miTipoVehiculo;
 		precio = miPrecio;
 		matricula = miMatricula;
 		marca = miMarca;
@@ -50,6 +53,14 @@ public class Vehiculo {
 		this.idConcesionario = idConcesionario;
 	}
 
+	public String getTipoVehiculo() {
+		return tipoVehiculo;
+	}
+
+	public void setTipoVehiculo(String tipo) {
+		this.tipoVehiculo = tipo;
+	}
+	
 	public float getPrecio() {
 		return precio;
 	}
@@ -90,11 +101,11 @@ public class Vehiculo {
 		this.color = color;
 	}
 
-	public Date getFechaAlta() {
+	public String getFechaAlta() {
 		return fechaAlta;
 	}
 
-	public void setFechaAlta(Date fechaAlta) {
+	public void setFechaAlta(String fechaAlta) {
 		this.fechaAlta = fechaAlta;
 	}
 	

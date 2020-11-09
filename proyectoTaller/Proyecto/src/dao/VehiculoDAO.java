@@ -52,19 +52,23 @@ public class VehiculoDAO extends AbstractDAO {
 	}
 	
 	//Por alguna razon a la hora de ingresar preparedStmt.setDate sale error con los valores por ello lo retiro de editar y encontrar vehiculo.
-	public void anadirVehiculo(float miPrecio, String miMatricula, String miMarca, String miModelo, String miColor) {
+	public boolean anadirVehiculo(Vehiculo miVehiculo) {
 		PreparedStatement pr;
 		try {
-			pr = super.cn.prepareStatement("insert into vehiculo (precio, matricula, marca, modelo, color) values (?,?,?,?,?,?);");
-			pr.setFloat(1, miPrecio);
-			pr.setString(2, miMatricula);
-			pr.setString(3, miMarca);
-			pr.setString(4, miModelo);
-			pr.setString(5, miColor);
+			pr = super.cn.prepareStatement("insert into vehiculo (precio, matricula, marca, modelo, color, tipo) values (?,?,?,?,?,?,?);");
+			//pr.setFloat(1, miVehiculo.getPrecio());
+			pr.setString(1, miVehiculo.getTipoVehiculo());
+			pr.setString(2, miVehiculo.getMatricula());
+			pr.setString(3, miVehiculo.getMarca());
+			pr.setString(4, miVehiculo.getModelo());
+			pr.setString(5, miVehiculo.getColor());
+			pr.setString(6, miVehiculo.getFechaAlta());
 			pr.executeUpdate();
+			return true;
 		}
 		catch (SQLException e) {
 			e.printStackTrace();
+			return false;
 		}
 	}
 	
