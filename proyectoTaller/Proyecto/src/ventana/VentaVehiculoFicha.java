@@ -4,12 +4,23 @@ import javax.swing.JFrame;
 import java.awt.Color;
 import javax.swing.JPanel;
 import javax.swing.border.LineBorder;
+
+import modelos.Usuario;
+
 import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.SwingConstants;
 import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import javax.swing.JTextField;
 
 public class VentaVehiculoFicha extends JFrame {
+	private JTextField textField;
+	private JTextField textField_1;
+	private JTextField textField_2;
+	private JTextField textField_3;
+	private JTextField textField_4;
 	
 	public VentaVehiculoFicha() {
 		
@@ -49,17 +60,21 @@ public class VentaVehiculoFicha extends JFrame {
 		panel_1.setBounds(428, 120, 138, 50);
 		getContentPane().add(panel_1);
 		
-		JLabel lblSeudonimo = new JLabel("Seudonimo");
-		lblSeudonimo.setHorizontalAlignment(SwingConstants.CENTER);
-		lblSeudonimo.setFont(new Font("Arial", Font.BOLD, 18));
-		lblSeudonimo.setBounds(10, 0, 119, 30);
-		panel_1.add(lblSeudonimo);
-		
-		JLabel lblMenuPrincipal = new JLabel("Menu principal");
-		lblMenuPrincipal.setHorizontalAlignment(SwingConstants.CENTER);
-		lblMenuPrincipal.setFont(new Font("Arial", Font.PLAIN, 15));
-		lblMenuPrincipal.setBounds(10, 20, 119, 30);
-		panel_1.add(lblMenuPrincipal);
+		JButton btnNewButton = new JButton("Menu principal");
+		btnNewButton.addActionListener(new ActionListener() {
+			Usuario miUsuario;
+			public void actionPerformed(ActionEvent e) {
+				VentaVentana menu = new VentaVentana(miUsuario); 
+				menu.setVisible(true);
+				menu.setExtendedState(JFrame.MAXIMIZED_BOTH); 
+				VentaVehiculoFicha.this.setVisible(false);
+				
+			}
+		});
+		btnNewButton.setForeground(Color.WHITE);
+		btnNewButton.setFont(new Font("Arial", Font.BOLD, 14));
+		btnNewButton.setBounds(0, 0, 138, 50);
+		panel_1.add(btnNewButton);
 		
 		JPanel panel_2 = new JPanel();
 		panel_2.setLayout(null);
@@ -101,35 +116,30 @@ public class VentaVehiculoFicha extends JFrame {
 		lblFechaAlta.setBounds(10, 155, 95, 25);
 		panel_2.add(lblFechaAlta);
 		
-		JLabel lblMatricula_1 = new JLabel("Matricula");
-		lblMatricula_1.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblMatricula_1.setFont(new Font("Arial", Font.PLAIN, 14));
-		lblMatricula_1.setBounds(183, 11, 95, 25);
-		panel_2.add(lblMatricula_1);
+		textField = new JTextField();
+		textField.setBounds(182, 14, 86, 20);
+		panel_2.add(textField);
+		textField.setColumns(10);
 		
-		JLabel lblMarca_1 = new JLabel("Marca");
-		lblMarca_1.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblMarca_1.setFont(new Font("Arial", Font.PLAIN, 14));
-		lblMarca_1.setBounds(183, 47, 95, 25);
-		panel_2.add(lblMarca_1);
+		textField_1 = new JTextField();
+		textField_1.setColumns(10);
+		textField_1.setBounds(182, 50, 86, 20);
+		panel_2.add(textField_1);
 		
-		JLabel lblModelo_1 = new JLabel("Modelo");
-		lblModelo_1.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblModelo_1.setFont(new Font("Arial", Font.PLAIN, 14));
-		lblModelo_1.setBounds(183, 83, 95, 25);
-		panel_2.add(lblModelo_1);
+		textField_2 = new JTextField();
+		textField_2.setColumns(10);
+		textField_2.setBounds(182, 86, 86, 20);
+		panel_2.add(textField_2);
 		
-		JLabel lblColor_1 = new JLabel("Color");
-		lblColor_1.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblColor_1.setFont(new Font("Arial", Font.PLAIN, 14));
-		lblColor_1.setBounds(183, 119, 95, 25);
-		panel_2.add(lblColor_1);
+		textField_3 = new JTextField();
+		textField_3.setColumns(10);
+		textField_3.setBounds(182, 122, 86, 20);
+		panel_2.add(textField_3);
 		
-		JLabel lblFechaAlta_1 = new JLabel("Fecha de alta");
-		lblFechaAlta_1.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblFechaAlta_1.setFont(new Font("Arial", Font.PLAIN, 14));
-		lblFechaAlta_1.setBounds(183, 155, 95, 25);
-		panel_2.add(lblFechaAlta_1);
+		textField_4 = new JTextField();
+		textField_4.setColumns(10);
+		textField_4.setBounds(182, 158, 86, 20);
+		panel_2.add(textField_4);
 		
 		JPanel panel_3 = new JPanel();
 		panel_3.setBorder(new LineBorder(new Color(0, 0, 0)));

@@ -16,7 +16,7 @@ abstract class AbstractDAO {
 		conectar();
 	}
 	
-	private void conectar() {
+	protected Connection conectar() {
 		try {
 			Class.forName(Conexion.controlador);
 			cn = DriverManager.getConnection(Conexion.url, Conexion.usuario, Conexion.clave);
@@ -27,6 +27,7 @@ abstract class AbstractDAO {
 		catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		}
+		return cn;
 	
 		
 			

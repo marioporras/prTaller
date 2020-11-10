@@ -4,12 +4,23 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import java.awt.Color;
 import javax.swing.border.LineBorder;
+
+import modelos.Usuario;
+
 import javax.swing.JButton;
 import java.awt.Font;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import javax.swing.JTextField;
 
 public class VentaClienteFicha extends JFrame {
+	private JTextField textField;
+	private JTextField textField_1;
+	private JTextField textField_2;
+	private JTextField textField_3;
+	private JTextField textField_4;
 	
 	public VentaClienteFicha() {
 		setTitle("Benavente & Porras - Venta - Cliente - Ficha");
@@ -36,17 +47,21 @@ public class VentaClienteFicha extends JFrame {
 		panel_1.setBounds(428, 120, 138, 50);
 		getContentPane().add(panel_1);
 		
-		JLabel lblSeudonimo = new JLabel("Seudonimo");
-		lblSeudonimo.setHorizontalAlignment(SwingConstants.CENTER);
-		lblSeudonimo.setFont(new Font("Arial", Font.BOLD, 18));
-		lblSeudonimo.setBounds(10, 0, 119, 30);
-		panel_1.add(lblSeudonimo);
-		
-		JLabel lblMenuPrincipal = new JLabel("Menu principal");
-		lblMenuPrincipal.setHorizontalAlignment(SwingConstants.CENTER);
-		lblMenuPrincipal.setFont(new Font("Arial", Font.PLAIN, 15));
-		lblMenuPrincipal.setBounds(10, 20, 119, 30);
-		panel_1.add(lblMenuPrincipal);
+		JButton btnNewButton = new JButton("Menu principal");
+		btnNewButton.addActionListener(new ActionListener() {
+			Usuario miUsuario;
+			public void actionPerformed(ActionEvent e) {
+				VentaVentana menu = new VentaVentana(miUsuario); 
+				menu.setVisible(true);
+				menu.setExtendedState(JFrame.MAXIMIZED_BOTH); 
+				VentaClienteFicha.this.setVisible(false);
+				
+			}
+		});
+		btnNewButton.setForeground(Color.WHITE);
+		btnNewButton.setFont(new Font("Arial", Font.BOLD, 14));
+		btnNewButton.setBounds(0, 0, 153, 50);
+		panel_1.add(btnNewButton);
 		
 		JPanel panel = new JPanel();
 		panel.setLayout(null);
@@ -100,35 +115,30 @@ public class VentaClienteFicha extends JFrame {
 		lblFechaAlta.setBounds(10, 155, 95, 25);
 		panel_2.add(lblFechaAlta);
 		
-		JLabel lblFechaAlta_1 = new JLabel("Fecha de alta");
-		lblFechaAlta_1.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblFechaAlta_1.setFont(new Font("Arial", Font.PLAIN, 14));
-		lblFechaAlta_1.setBounds(183, 155, 95, 25);
-		panel_2.add(lblFechaAlta_1);
+		textField = new JTextField();
+		textField.setBounds(192, 14, 86, 20);
+		panel_2.add(textField);
+		textField.setColumns(10);
 		
-		JLabel lblDni_1 = new JLabel("DNI");
-		lblDni_1.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblDni_1.setFont(new Font("Arial", Font.PLAIN, 14));
-		lblDni_1.setBounds(183, 119, 95, 25);
-		panel_2.add(lblDni_1);
+		textField_1 = new JTextField();
+		textField_1.setColumns(10);
+		textField_1.setBounds(192, 50, 86, 20);
+		panel_2.add(textField_1);
 		
-		JLabel lblTelefono_1 = new JLabel("Telefono");
-		lblTelefono_1.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblTelefono_1.setFont(new Font("Arial", Font.PLAIN, 14));
-		lblTelefono_1.setBounds(183, 83, 95, 25);
-		panel_2.add(lblTelefono_1);
+		textField_2 = new JTextField();
+		textField_2.setColumns(10);
+		textField_2.setBounds(192, 86, 86, 20);
+		panel_2.add(textField_2);
 		
-		JLabel lblApellidos_1 = new JLabel("Apellidos");
-		lblApellidos_1.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblApellidos_1.setFont(new Font("Arial", Font.PLAIN, 14));
-		lblApellidos_1.setBounds(183, 47, 95, 25);
-		panel_2.add(lblApellidos_1);
+		textField_3 = new JTextField();
+		textField_3.setColumns(10);
+		textField_3.setBounds(192, 122, 86, 20);
+		panel_2.add(textField_3);
 		
-		JLabel lblNombre_1 = new JLabel("Nombre");
-		lblNombre_1.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblNombre_1.setFont(new Font("Arial", Font.PLAIN, 14));
-		lblNombre_1.setBounds(183, 11, 95, 25);
-		panel_2.add(lblNombre_1);
+		textField_4 = new JTextField();
+		textField_4.setColumns(10);
+		textField_4.setBounds(192, 158, 86, 20);
+		panel_2.add(textField_4);
 		
 		JPanel panel_3 = new JPanel();
 		panel_3.setBorder(new LineBorder(new Color(0, 0, 0)));
@@ -136,5 +146,4 @@ public class VentaClienteFicha extends JFrame {
 		panel_3.setBounds(265, 106, 314, 328);
 		getContentPane().add(panel_3);
 	}
-
 }

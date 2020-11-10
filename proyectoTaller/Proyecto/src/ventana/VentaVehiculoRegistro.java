@@ -7,9 +7,12 @@ import java.awt.EventQueue;
 import javax.swing.JPanel;
 import javax.swing.border.LineBorder;
 
+import com.sun.tools.javac.Main;
+
 import dao.ClienteDAO;
 import dao.VehiculoDAO;
 import modelos.Cliente;
+import modelos.Usuario;
 import modelos.Vehiculo;
 
 import javax.swing.JLabel;
@@ -20,6 +23,7 @@ import javax.swing.SwingConstants;
 import javax.swing.JButton;
 import javax.swing.JTextField;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
 import java.awt.event.ActionEvent;
 
 public class VentaVehiculoRegistro extends JFrame {
@@ -68,17 +72,30 @@ public class VentaVehiculoRegistro extends JFrame {
 		panel_1.setBounds(428, 120, 138, 50);
 		getContentPane().add(panel_1);
 		
-		JLabel lblSeudonimo = new JLabel("Seudonimo");
-		lblSeudonimo.setHorizontalAlignment(SwingConstants.CENTER);
-		lblSeudonimo.setFont(new Font("Arial", Font.BOLD, 18));
-		lblSeudonimo.setBounds(10, 0, 119, 30);
-		panel_1.add(lblSeudonimo);
+		JButton btnNewButton = new JButton("Menu principal\r\n");
+		btnNewButton.addActionListener(new ActionListener() {
+			Usuario miUsuario;
+			Main miMain;
+			public void actionPerformed(ActionEvent e) {
+				
+				VentaVentana menu = new VentaVentana(miUsuario); 
+				menu.setVisible(true);
+				menu.setExtendedState(JFrame.MAXIMIZED_BOTH); 
+				VentaVehiculoRegistro.this.setVisible(false);
+				
 		
-		JLabel lblMenuPrincipal = new JLabel("Menu principal");
-		lblMenuPrincipal.setHorizontalAlignment(SwingConstants.CENTER);
-		lblMenuPrincipal.setFont(new Font("Arial", Font.PLAIN, 15));
-		lblMenuPrincipal.setBounds(10, 20, 119, 30);
-		panel_1.add(lblMenuPrincipal);
+			
+					
+				}
+				
+			
+	
+			
+		});
+		btnNewButton.setForeground(Color.WHITE);
+		btnNewButton.setFont(new Font("Arial", Font.BOLD, 14));
+		btnNewButton.setBounds(0, 0, 138, 50);
+		panel_1.add(btnNewButton);
 		
 		JPanel panel_2 = new JPanel();
 		panel_2.setLayout(null);
@@ -95,12 +112,13 @@ public class VentaVehiculoRegistro extends JFrame {
 					VehiculoDAO miVehiculoDAO = new VehiculoDAO();
 					Vehiculo miVehiculo = new Vehiculo();
 					
-					miVehiculo.setTipoVehiculo(txtTipo.getText());
+					
 					miVehiculo.setMatricula(txtMatricula.getText());
 					miVehiculo.setMarca(txtMarca.getText());
 					miVehiculo.setModelo(txtModelo.getText());
 					miVehiculo.setColor(txtColor.getText());
-					//miVehiculo.setFechaAlta());
+					miVehiculo.setFechaAlta(txtFechaAlta.getText());
+					miVehiculo.setTipoVehiculo(txtTipo.getText());
 
 
 										

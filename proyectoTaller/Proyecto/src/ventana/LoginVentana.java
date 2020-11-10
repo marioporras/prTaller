@@ -8,6 +8,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JButton;
 import javax.swing.SwingConstants;
 import javax.swing.JPanel;
@@ -71,6 +72,40 @@ public class LoginVentana extends JFrame implements ActionListener {
 		lblContrasena.setFont(new Font("Arial", Font.BOLD, 18));
 		
 		JButton btnEntrar = new JButton("Entrar");
+		btnEntrar.addActionListener(new ActionListener() {
+			
+			public void actionPerformed(ActionEvent e) {
+				
+				Usuario miUsuario = new Usuario();
+				UsuarioDAO miUsuarioDAO = new UsuarioDAO();
+				String contra = new String(psdfContrasena.getPassword());
+				
+				if(!psdfContrasena.getText().contentEquals("") && !contra.contentEquals("")) {
+					miUsuario.setSeudonimo(txtfUsuario.getText());
+					miUsuario.setContrasena(contra);
+					
+					if(miUsuarioDAO.pruebaLogin(miUsuario)) {
+						
+						JOptionPane.showMessageDialog(null, "Logeado correctamente");
+						VentaVentana menu = new VentaVentana(miUsuario); 
+						menu.setVisible(true);
+						menu.setExtendedState(JFrame.MAXIMIZED_BOTH); 
+						LoginVentana.this.setVisible(false);
+
+						
+					}else {
+						JOptionPane.showMessageDialog(null, "Contraseña o usuario incorrectamente");
+
+					}
+					}else { 					
+						JOptionPane.showMessageDialog(null, "Contraseña o usuario incorrectamente");
+
+						
+					};
+				
+				};
+				
+		});
 		btnEntrar.setForeground(Color.WHITE);
 		btnEntrar.setBackground(new Color(0, 128, 128));
 		btnEntrar.setBounds(47, 235, 160, 30);
@@ -97,13 +132,13 @@ public class LoginVentana extends JFrame implements ActionListener {
 			}
 		});
 	}
-	
+	/*
 	public void abrir(ActionEvent e) {
 		String acceso = new String(psdfContrasena.getPassword());		
 		VentaVentana ventaVentana;
 		miUsuario = miUsuarioDao.pruebaLogin(txtfUsuario.getText(), acceso);	
 	}
-
+*/
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		

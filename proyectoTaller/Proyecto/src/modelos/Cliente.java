@@ -9,9 +9,9 @@ public class Cliente {
 	private String apellidos;
 	private String telefono;
 	private String dni;
-	private Date fechaAlta;
+	private String fechaAlta;
 		
-	public Cliente(int miIdCliente, String miNombre, String miApellidos, String miTelefono, String miDni, Date miFechaAlta) {
+	public Cliente(int miIdCliente, String miNombre, String miApellidos, String miTelefono, String miDni, String miFechaAlta) {
 		idCliente = miIdCliente;
 		nombre = miNombre;
 		apellidos = miApellidos;
@@ -60,11 +60,11 @@ public class Cliente {
 		this.dni = dni;
 	}
 	
-	public Date getFechaAlta() {
+	public String getFechaAlta() {
 		return fechaAlta;
 	}
 	
-	public void setFechaAlta(Date fechaAlta) {
+	public void setFechaAlta(String fechaAlta) {
 		this.fechaAlta = fechaAlta;
 	}
 

@@ -7,6 +7,7 @@ import java.sql.Statement;
 
 import com.mysql.jdbc.PreparedStatement;
 
+import conexion.Conexion;
 import modelos.Usuario;
 
 public class UsuarioDAO extends AbstractDAO {
@@ -21,7 +22,43 @@ public class UsuarioDAO extends AbstractDAO {
 		rs = null;
 	}
 	
-	public Usuario pruebaLogin(String miSeudo, String miContra) {
+	public boolean pruebaLogin(Usuario miUsuario) {
+		//String miSeudo, String miContra
+		
+		Conexion miConexion = new Conexion();
+		
+		java.sql.PreparedStatement ps = null;
+		ResultSet rs = null;
+		Connection con = conectar();
+		
+		String sql = "SELECT seudonimo, contrasena FROM usuario WHERE seudonimo = ? ";
+		try {
+			ps = con.prepareStatement(sql);
+			ps.setString(1, miUsuario.getSeudonimo());
+			rs = ps.executeQuery();
+			
+			if(rs.next()) {
+				if (miUsuario.getContrasena().equals(rs.getString(2))) {
+					return true;
+				}else {
+					return false;
+				}
+			}
+			
+		
+			return false;
+		}
+		catch (SQLException e) {
+			e.printStackTrace();
+			return false;
+		}
+		}
+	
+	
+	
+	/*
+	public boolean pruebaLogin2(Usuario miUsuario) {
+		//String miSeudo, String miContra
 		try {
 			stm = super.cn.createStatement();
 			rs = stm.executeQuery("select * from usuario where usuario='" + miSeudo + "' and contrasena='" + miContra + "';");
@@ -29,12 +66,15 @@ public class UsuarioDAO extends AbstractDAO {
 				miUsuario = new Usuario();
 				this.setAtributos();
 			}
+			return true;
 		}
 		catch (SQLException e) {
 			e.printStackTrace();
+			return false;
 		}
-		return miUsuario;
+	
 	}
+	*/
 	
 	private void setAtributos() {
 		try {

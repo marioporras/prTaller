@@ -16,17 +16,18 @@ public class Vehiculo {
 	private String fechaAlta;
 	private String tipoVehiculo;
 
-	public Vehiculo(int miIdCliente, int miIdUsuario, int miIdConcesionario,String miTipoVehiculo, float miPrecio, String miMatricula, String miMarca, String miModelo, String miColor, String miFechaAlta) {
-		idCliente = miIdCliente;
-		idUsuario = miIdUsuario;
-		idConcesionario = miIdConcesionario;
-		tipoVehiculo = miTipoVehiculo;
-		precio = miPrecio;
+	public Vehiculo(String miMatricula, String miMarca, String miModelo, String miColor, String miFechaAlta, String miTipoVehiculo, int miIdCliente, int miIdUsuario, int miIdConcesionario) {
+
+		//precio = miPrecio;
 		matricula = miMatricula;
 		marca = miMarca;
 		modelo = miModelo;
 		color = miColor;
 		fechaAlta = miFechaAlta;
+		tipoVehiculo = miTipoVehiculo;
+		idCliente = miIdCliente;
+		idUsuario = miIdUsuario;
+		idConcesionario = miIdConcesionario;
 	}
 
 	public int getIdCliente() {

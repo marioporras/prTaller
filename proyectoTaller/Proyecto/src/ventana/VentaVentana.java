@@ -15,11 +15,13 @@ import javax.swing.border.BevelBorder;
 import javax.swing.border.LineBorder;
 
 public class VentaVentana extends JFrame {
+	private final JButton btnNewButton = new JButton("Cerrar sesi\u00F3n");
 
 	public VentaVentana(Usuario miUsuario) {
 		getContentPane().setFont(new Font("Arial", Font.BOLD, 12));
 		getContentPane().setBackground(new Color(255, 153, 102));
 		getContentPane().setLayout(null);
+	
 		
 		JPanel panel = new JPanel();
 		panel.setBorder(new LineBorder(new Color(0, 0, 0)));
@@ -40,18 +42,20 @@ public class VentaVentana extends JFrame {
 		panel_1.setBounds(428, 120, 138, 50);
 		getContentPane().add(panel_1);
 		panel_1.setLayout(null);
-		
-		JLabel lblSeudonimo = new JLabel("Seudonimo");
-		lblSeudonimo.setBounds(10, 0, 119, 30);
-		panel_1.add(lblSeudonimo);
-		lblSeudonimo.setHorizontalAlignment(SwingConstants.CENTER);
-		lblSeudonimo.setFont(new Font("Arial", Font.BOLD, 18));
-		
-		JLabel lblCerrarSesion = new JLabel("CerrarSesion");
-		lblCerrarSesion.setBounds(10, 20, 119, 30);
-		panel_1.add(lblCerrarSesion);
-		lblCerrarSesion.setHorizontalAlignment(SwingConstants.CENTER);
-		lblCerrarSesion.setFont(new Font("Arial", Font.PLAIN, 15));
+		btnNewButton.addActionListener(new ActionListener() {
+
+			public void actionPerformed(ActionEvent e) {
+				LoginVentana log = new LoginVentana(); 
+				log.setVisible(true);
+				log.setExtendedState(JFrame.MAXIMIZED_BOTH); 
+				VentaVentana.this.setVisible(false);
+				
+			}
+		});
+		btnNewButton.setFont(new Font("Arial", Font.BOLD, 14));
+		btnNewButton.setForeground(Color.WHITE);
+		btnNewButton.setBounds(0, 0, 138, 50);
+		panel_1.add(btnNewButton);
 		
 		JPanel panel_2 = new JPanel();
 		panel_2.setBorder(new LineBorder(new Color(0, 0, 0)));
@@ -61,6 +65,15 @@ public class VentaVentana extends JFrame {
 		panel_2.setLayout(null);
 		
 		JButton btnAnadirCliente = new JButton("A\u00F1adir cliente");
+		btnAnadirCliente.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				VentaClienteRegistro clRg = new VentaClienteRegistro(); 
+				clRg.setVisible(true);
+				clRg.setExtendedState(JFrame.MAXIMIZED_BOTH); 
+				VentaVentana.this.setVisible(false);
+				
+			}
+		});
 		btnAnadirCliente.setBounds(20, 11, 248, 40);
 		panel_2.add(btnAnadirCliente);
 		btnAnadirCliente.setBackground(new Color(0, 128, 128));
@@ -68,6 +81,16 @@ public class VentaVentana extends JFrame {
 		btnAnadirCliente.setFont(new Font("Arial", Font.BOLD, 18));
 		
 		JButton btnEncontrarCliente = new JButton("Encontrar cliente");
+		btnEncontrarCliente.addActionListener(new ActionListener() {
+			
+			public void actionPerformed(ActionEvent e) {
+				VentaClientesVentana ficha = new VentaClientesVentana(); 
+				ficha.setVisible(true);
+				ficha.setExtendedState(JFrame.MAXIMIZED_BOTH); 
+				VentaVentana.this.setVisible(false);
+				
+			}
+		});
 		btnEncontrarCliente.setBounds(20, 62, 248, 40);
 		panel_2.add(btnEncontrarCliente);
 		btnEncontrarCliente.setForeground(Color.WHITE);
@@ -76,7 +99,13 @@ public class VentaVentana extends JFrame {
 		
 		JButton btnAnadirVehiculo = new JButton("Anadir vehiculo");
 		btnAnadirVehiculo.addActionListener(new ActionListener() {
+			
 			public void actionPerformed(ActionEvent arg0) {
+				VentaVehiculoRegistro reg = new VentaVehiculoRegistro(); 
+				reg.setVisible(true);
+				reg.setExtendedState(JFrame.MAXIMIZED_BOTH); 
+				VentaVentana.this.setVisible(false);
+				
 			}
 		});
 		btnAnadirVehiculo.setBounds(20, 141, 248, 40);
@@ -86,6 +115,15 @@ public class VentaVentana extends JFrame {
 		btnAnadirVehiculo.setBackground(new Color(0, 128, 128));
 		
 		JButton btnEncontrarVehiculo = new JButton("Encontrar vehiculo");
+		btnEncontrarVehiculo.addActionListener(new ActionListener() {
+			
+			public void actionPerformed(ActionEvent e) {
+				VentaVehiculoFicha vehF = new VentaVehiculoFicha(); 
+				vehF.setVisible(true);
+				vehF.setExtendedState(JFrame.MAXIMIZED_BOTH); 
+				VentaVentana.this.setVisible(false);
+			}
+		});
 		btnEncontrarVehiculo.setBounds(20, 192, 248, 40);
 		panel_2.add(btnEncontrarVehiculo);
 		btnEncontrarVehiculo.setForeground(Color.WHITE);
@@ -118,5 +156,4 @@ public class VentaVentana extends JFrame {
 		lblVentas.setHorizontalAlignment(SwingConstants.CENTER);
 		setTitle("Benavente & Porras - Venta");
 	}
-	
 }

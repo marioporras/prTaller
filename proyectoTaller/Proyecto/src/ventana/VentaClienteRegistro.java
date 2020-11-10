@@ -9,6 +9,7 @@ import javax.swing.border.LineBorder;
 
 import dao.ClienteDAO;
 import modelos.Cliente;
+import modelos.Usuario;
 
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -41,17 +42,21 @@ public class VentaClienteRegistro extends JFrame {
 		panel_1.setBounds(428, 120, 138, 50);
 		getContentPane().add(panel_1);
 		
-		JLabel lblSeudonimo = new JLabel("Seudonimo");
-		lblSeudonimo.setHorizontalAlignment(SwingConstants.CENTER);
-		lblSeudonimo.setFont(new Font("Arial", Font.BOLD, 18));
-		lblSeudonimo.setBounds(10, 0, 119, 30);
-		panel_1.add(lblSeudonimo);
-		
-		JLabel lblMenuPrincipal = new JLabel("Menu principal");
-		lblMenuPrincipal.setHorizontalAlignment(SwingConstants.CENTER);
-		lblMenuPrincipal.setFont(new Font("Arial", Font.PLAIN, 15));
-		lblMenuPrincipal.setBounds(10, 20, 119, 30);
-		panel_1.add(lblMenuPrincipal);
+		JButton btnNewButton = new JButton("Menu principal");
+		btnNewButton.addActionListener(new ActionListener() {
+			Usuario miUsuario;
+			public void actionPerformed(ActionEvent e) {
+				VentaVentana menu = new VentaVentana(miUsuario); 
+				menu.setVisible(true);
+				menu.setExtendedState(JFrame.MAXIMIZED_BOTH); 
+				VentaClienteRegistro.this.setVisible(false);
+				
+			}
+		});
+		btnNewButton.setFont(new Font("Arial", Font.BOLD, 14));
+		btnNewButton.setForeground(Color.WHITE);
+		btnNewButton.setBounds(0, 0, 138, 50);
+		panel_1.add(btnNewButton);
 		
 		JPanel panel = new JPanel();
 		panel.setLayout(null);
@@ -96,14 +101,14 @@ public class VentaClienteRegistro extends JFrame {
 				miCliente.setApellidos(txtApellidos.getText());
 				miCliente.setTelefono(txtTelefono.getText());
 				miCliente.setDni(txtDNI.getText());
-				//miCliente.setFechaAlta(txtFechaAlta.getText());
+				miCliente.setFechaAlta(txtFechaAlta.getText());
 				
 				if (miClienteDAO.anadirCliente(miCliente)) 
 				{
 					JOptionPane.showMessageDialog(null, "Registrado correctamente");
 					
 				}else {
-					JOptionPane.showMessageDialog(null, "Registrado INcorrectamente");
+					JOptionPane.showMessageDialog(null, "Registrado Incorrectamente");
 
 				}
 			}

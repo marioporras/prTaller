@@ -30,7 +30,7 @@ public class ClienteDAO extends AbstractDAO {
 			pr.setString(2, miCliente.getApellidos());
 			pr.setString(3, miCliente.getTelefono());
 			pr.setString(4, miCliente.getDni());
-			pr.setDate(5, miCliente.getFechaAlta());
+			pr.setString(5, miCliente.getFechaAlta());
 			pr.executeUpdate();
 			return true;
 		}
@@ -41,16 +41,16 @@ public class ClienteDAO extends AbstractDAO {
 	}
 	
 	//Por alguna razon a la hora de ingresar preparedStmt.setDate sale error con los valores por ello lo retiro de editar y encontrar cliente.
-	public ArrayList<Cliente> encontrarCliente(String miNombre, String miApellido, String miTelefono, String miDni) {
+	public boolean encontrarCliente(String miDni) {
 		ArrayList<Cliente> miClientes = null;
 		Cliente miCliente;
 		PreparedStatement pr;
 		try {
-			String query = "select * from cliente where " + "nombre like ? and apellidos like ? and telefono like ? and dni like ?;";
+			String query = "select * from cliente where dni like ?;";
 			pr = super.cn.prepareStatement(query, ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
-			pr.setString(1, "%" + miNombre + "%" );
-			pr.setString(2, "%" + miApellido + "%");
-			pr.setString(3, "%" + miTelefono + "%" );
+			//pr.setString(1, "%" + miNombre + "%" );
+			//pr.setString(2, "%" + miApellido + "%");
+			//pr.setString(3, "%" + miTelefono + "%" );
 			pr.setString(4, "%" + miDni + "%" );
 			miClientes = new ArrayList<Cliente>();
 			rs = pr.executeQuery();
@@ -62,12 +62,13 @@ public class ClienteDAO extends AbstractDAO {
 				miCliente.setTelefono(rs.getString(4));
 				miCliente.setDni(rs.getString(5));
 				miClientes.add(miCliente);			
-			}		
+			}		return true;
 		}
 		catch (SQLException e) {
 			e.printStackTrace();
+			return false;
 		}
-		return miClientes;
+		
 	}
 	
 	//Por alguna razon a la hora de ingresar preparedStmt.setDate sale error con los valores por ello lo retiro de editar y encontrar cliente.

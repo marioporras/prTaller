@@ -25,12 +25,12 @@ import com.mysql.jdbc.ResultSetMetaData;
 import conexion.Conexion;
 import dao.ClienteDAO;
 
-public class VentaClientesVentana extends JFrame {
+public class VentaVehiculosVentana extends JFrame {
 	
 	private JTable table;
 	private JTextField textField;
 	
-	public VentaClientesVentana() {
+	public VentaVehiculosVentana() {
 		getContentPane().setBackground(new Color(255, 153, 102));
 		getContentPane().setLayout(null);
 		
@@ -81,7 +81,7 @@ public class VentaClientesVentana extends JFrame {
 		panel_2.add(textField);
 		textField.setColumns(10);
 		
-		JLabel lblNewLabel = new JLabel("\tDNI");
+		JLabel lblNewLabel = new JLabel("Matricula");
 		lblNewLabel.setFont(new Font("Arial", Font.PLAIN, 11));
 		lblNewLabel.setBounds(165, 37, 46, 14);
 		panel_2.add(lblNewLabel);
@@ -151,7 +151,7 @@ public class VentaClientesVentana extends JFrame {
 		panel.setBackground(Color.ORANGE);
 		panel.setLayout(null);
 		
-		JLabel lblCliente = new JLabel("Cliente");
+		JLabel lblCliente = new JLabel("Vehiculo");
 		lblCliente.setBounds(10, 11, 120, 30);
 		lblCliente.setHorizontalAlignment(SwingConstants.CENTER);
 		lblCliente.setFont(new Font("Arial", Font.BOLD, 22));
@@ -171,7 +171,7 @@ public class VentaClientesVentana extends JFrame {
 				VentaVentana menu = new VentaVentana(miUsuario); 
 				menu.setVisible(true);
 				menu.setExtendedState(JFrame.MAXIMIZED_BOTH); 
-				VentaClientesVentana.this.setVisible(false);
+				VentaVehiculosVentana.this.setVisible(false);
 				
 			}
 		});
@@ -187,7 +187,7 @@ public class VentaClientesVentana extends JFrame {
 		panel_5.setBounds(160, 11, 140, 50);
 		panel_3.add(panel_5);
 		
-		JLabel lblClientes = new JLabel("Clientes");
+		JLabel lblClientes = new JLabel("Vehiculo");
 		lblClientes.setHorizontalAlignment(SwingConstants.CENTER);
 		lblClientes.setFont(new Font("Arial", Font.BOLD, 22));
 		lblClientes.setBounds(10, 11, 120, 30);

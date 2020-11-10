@@ -55,14 +55,15 @@ public class VehiculoDAO extends AbstractDAO {
 	public boolean anadirVehiculo(Vehiculo miVehiculo) {
 		PreparedStatement pr;
 		try {
-			pr = super.cn.prepareStatement("insert into vehiculo (precio, matricula, marca, modelo, color, tipo) values (?,?,?,?,?,?,?);");
+			pr = super.cn.prepareStatement("insert into vehiculo (matricula, marca, modelo, color, tipoVehiculo,fechaAlta) values (?,?,?,?,?,?);");
 			//pr.setFloat(1, miVehiculo.getPrecio());
-			pr.setString(1, miVehiculo.getTipoVehiculo());
-			pr.setString(2, miVehiculo.getMatricula());
-			pr.setString(3, miVehiculo.getMarca());
-			pr.setString(4, miVehiculo.getModelo());
-			pr.setString(5, miVehiculo.getColor());
-			pr.setString(6, miVehiculo.getFechaAlta());
+	
+			pr.setString(1, miVehiculo.getMatricula());
+			pr.setString(2, miVehiculo.getMarca());
+			pr.setString(3, miVehiculo.getModelo());
+			pr.setString(4, miVehiculo.getColor());
+			pr.setString(5, miVehiculo.getFechaAlta());
+			pr.setString(6, miVehiculo.getTipoVehiculo());
 			pr.executeUpdate();
 			return true;
 		}
